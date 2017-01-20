@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Ninkasi - Recommenders</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="static/recom_page/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="static/recom_page/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- table css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="static/recom_page/css/style.css" rel="stylesheet">
+    <script src="static/recom_page/js/index.js"></script>
+
+    <!-- Theme CSS -->
+    <link href="static/recom_page/css/agency.min.css" rel="stylesheet">
+
+    <!-- page icon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="static/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="static/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="static/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="static/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="static/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="static/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="static/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="static/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="static/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="static/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Explore More Beers</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#howtouse">HOW TO USE</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#content-based">SIMILAR TASTE</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#collab-filter">SIMILAR PEOPLE</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="{{ url_for('index') }}">GO BACK</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Nice to meet you!</div>
+                <div class="intro-heading">Ninkasi is ready to serve</div>
+                <div class="col-lg-12 text-center">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">
+                    <a href="#howtouse" class="page-scroll btn btn-xl">Start</a>
+                    </div>
+                    <div class="col-sm-3">
+                    <a href="{{ url_for('index') }}" class="page-scroll btn btn-xl">Back</a>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- howtouse Section -->
+        <!-- Techniques Grid Section -->
+    <section id="howtouse">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">HOW TO USE</h2>
+                    <h3 class="section-subheading text-muted">Ninkasi has two engines built in. Click each recommender image for more detail!</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="static/recom_page/img/portfolio/beerreview.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Recommender I. SIMILAR TASTE</h4>
+                        <p class="text-muted">Based on 280,000 beer reviews</p>
+                    </div>
+                </div>
+                  <div class="col-md-2 col-sm-6 portfolio-item">
+                  </div>
+                <div class="col-md-5 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="static/recom_page/img/portfolio/beerrating.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Recommender II. SIMILAR PEOPLE</h4>
+                        <p class="text-muted">Based on ratings from 17,000 customers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Content Section -->
+    <section id="content-based" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Find beers that are similar to your favoriate!</h2>
+                    <h3 class="section-subheading text-muted">Content-based Recommendation<br><br>
+                    Note: only top-25 beers for each state are included.</h3>
+
+                </div>
+
+                <div class="col-lg-12 text-center">
+                    <div class="col-lg-12 text-center">
+                    <form method="POST" action="">
+                        <div class="col-lg-12 text-center">
+                        <h4> Enter your favorite beer:</h4>
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                        <input list="beers" name="beer_inp0" type="text" placeholder="enter a beer name"
+                        {% if cur_inp0 %} value="{{ cur_inp0 }}" {% endif %}/>
+                        <datalist id="beers">
+                        {% for beer in beer_list1 %}
+                            <option>{{ beer }}</option>
+                        {% endfor %}
+                        </datalist>
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-12">
+                        <input type="submit" onclick="location.href='#content-based';"/>
+                        <br></br>
+                        </div>
+                    </form>
+                    </div>
+
+                    {% if warning1 %}
+                    <div class="col-lg-12 text-center">
+                        <h3 class="section-subheading text-muted">{{ warning1 }}</h3>
+                    {% endif %}
+                    {% if not key_words or not cb_rec or not table_list1 %}
+                    <br><br><br><br><br><br><br>
+                    {% endif %}
+                    </div>
+
+                    <!-- <div id="myDiv" style="display:none;" class="answer_list" >WELCOME</div>
+                    <input type="button" name="answer" onclick="document.getElementById('myDiv').style.display = '';" /> -->
+
+                </div>
+
+
+                {% if key_words and cb_rec and table_list1 %}
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <b>Key words of this beer:</b>
+                            </div>
+                            <div class="panel-body">
+                                <p>{{ key_words }}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b>10 Beers Similar to Your Favoriate:</b>
+                            </div>
+    
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th><i>#</i></th>
+                                            <th><i>Beer Name</i></th>
+                                            <th><i>State</i></th>
+                                            <th><i>Avg User Rating (1-20)</i></th>
+                                            <th><i>Avg overall Rating (1-20)</i></th>
+                                            <th><i>More Details</i></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[0]}}</td>
+                                            <td>{{table_list1[0][0]}}</td>
+                                            <td>{{table_list1[0][1]}}</td>
+                                            <td>{{table_list1[0][2]}}</td>
+                                            <td><a href="{{table_list1[0][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[1]}}</td>
+                                            <td>{{table_list1[1][0]}}</td>
+                                            <td>{{table_list1[1][1]}}</td>
+                                            <td>{{table_list1[1][2]}}</td>
+                                            <td><a href="{{table_list1[1][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[2]}}</td>
+                                            <td>{{table_list1[2][0]}}</td>
+                                            <td>{{table_list1[2][1]}}</td>
+                                            <td>{{table_list1[2][2]}}</td>
+                                            <td><a href="{{table_list1[2][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[3]}}</td>
+                                            <td>{{table_list1[3][0]}}</td>
+                                            <td>{{table_list1[3][1]}}</td>
+                                            <td>{{table_list1[3][2]}}</td>
+                                            <td><a href="{{table_list1[3][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[4]}}</td>
+                                            <td>{{table_list1[4][0]}}</td>
+                                            <td>{{table_list1[4][1]}}</td>
+                                            <td>{{table_list1[4][2]}}</td>
+                                            <td><a href="{{table_list1[4][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[5]}}</td>
+                                            <td>{{table_list1[5][0]}}</td>
+                                            <td>{{table_list1[5][1]}}</td>
+                                            <td>{{table_list1[5][2]}}</td>
+                                            <td><a href="{{table_list1[5][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[6]}}</td>
+                                            <td>{{table_list1[6][0]}}</td>
+                                            <td>{{table_list1[6][1]}}</td>
+                                            <td>{{table_list1[6][2]}}</td>
+                                            <td><a href="{{table_list1[6][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[7]}}</td>
+                                            <td>{{table_list1[7][0]}}</td>
+                                            <td>{{table_list1[7][1]}}</td>
+                                            <td>{{table_list1[7][2]}}</td>
+                                            <td><a href="{{table_list1[7][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[8]}}</td>
+                                            <td>{{table_list1[8][0]}}</td>
+                                            <td>{{table_list1[8][1]}}</td>
+                                            <td>{{table_list1[8][2]}}</td>
+                                            <td><a href="{{table_list1[8][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            {% if cb_rec %}
+                                            <td>{{cb_rec[9]}}</td>
+                                            <td>{{table_list1[9][0]}}</td>
+                                            <td>{{table_list1[9][1]}}</td>
+                                            <td>{{table_list1[9][2]}}</td>
+                                            <td><a href="{{table_list1[9][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- collab-filter Section -->
+    <section id="collab-filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Find beers from other people like you!</h2>
+                    <h3 class="section-subheading text-muted">Collaborative-Filtering Recommendation<br><br>
+                    Note: only top-25 beers for each state are included.</h3>
+
+                </div>
+            
+                <div class="row">
+                    <form method="POST" action="">
+                     <!-- <label id="rangeText"> -->
+                        <div class="col-lg-12 text-center">
+                        <h4>Enter your favorite beers and rate them: (2-10 beers, 1-20 points)</h4>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers1" name="beer_inp1" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 1 <= cur_len %} value="{{ cur_inp1[0][0] }}" {% endif %}/>
+                                    <datalist id="beers1">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp1" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp1').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 1 <= cur_len %} value="{{ cur_inp1[0][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp1" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers2" name="beer_inp2" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 2 <= cur_len %} value="{{ cur_inp1[1][0] }}" {% endif %}/>
+                                    <datalist id="beers2">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp2" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp2').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 2 <= cur_len %} value="{{ cur_inp1[1][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp2" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers3" name="beer_inp3" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 3 <= cur_len %} value="{{ cur_inp1[2][0] }}" {% endif %}/>
+                                    <datalist id="beers3">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp3" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp3').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 3 <= cur_len %} value="{{ cur_inp1[2][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp3" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers4" name="beer_inp4" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 4 <= cur_len %} value="{{ cur_inp1[3][0] }}" {% endif %}/>
+                                    <datalist id="beers4">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp4" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp4').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 4 <= cur_len %} value="{{ cur_inp1[3][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp4" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers5" name="beer_inp5" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 5 <= cur_len %} value="{{ cur_inp1[4][0] }}" {% endif %}/>
+                                    <datalist id="beers5">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp5" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp5').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 5 <= cur_len %} value="{{ cur_inp1[4][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp5" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center" style="display: {% if cur_inp1 and 6 <= cur_len %}block{% else %}none{% endif %}" id="toggleForm">
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers6" name="beer_inp6" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 6 <= cur_len %} value="{{ cur_inp1[5][0] }}" {% endif %}/>
+                                    <datalist id="beers6">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp6" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp6').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 6 <= cur_len %} value="{{ cur_inp1[5][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp6" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers7" name="beer_inp7" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 7 <= cur_len %} value="{{ cur_inp1[6][0] }}" {% endif %}/>
+                                    <datalist id="beers7">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp7" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp7').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 7 <= cur_len %} value="{{ cur_inp1[6][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp7" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers8" name="beer_inp8" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 8 <= cur_len %} value="{{ cur_inp1[7][0] }}" {% endif %}/>
+                                    <datalist id="beers8">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp8" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp8').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 8 <= cur_len %} value="{{ cur_inp1[7][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp8" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers9" name="beer_inp9" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 9 <= cur_len %} value="{{ cur_inp1[8][0] }}" {% endif %}/>
+                                    <datalist id="beers9">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp9" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp9').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 9 <= cur_len %} value="{{ cur_inp1[8][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp9" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4 text-center">
+                                <input list="beers10" name="beer_inp10" type="text" placeholder="enter a beer name"
+                                {% if cur_inp1 and 10 <= cur_len %} value="{{ cur_inp1[9][0] }}" {% endif %}/>
+                                    <datalist id="beers10">
+                                        {% for beer in beer_list2 %}
+                                            <option>{{ beer }}</option>
+                                        {% endfor %}
+                                    </datalist>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <input class="rangememeda" type="range" name="rating_inp10" min="1" max="20" 
+                                    oninput="document.getElementById('rating_inp10').innerHTML = this.value;"
+                                    step="1" {% if cur_inp1 and 10 <= cur_len %} value="{{ cur_inp1[9][1] }}" {% endif %}/>
+                                </input>
+                                <em id="rating_inp10" style="font-style: normal;"></em>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        </div>
+                        <br></br>
+                        <div class="col-lg-12 text-center">
+                            <button type="button" class="button button1" id="displayForm" onClick="toggleform();">
+                            {% if cur_inp1 and 6 <= cur_len %}Show Less{% else %}Rate More{% endif %}
+                            </button>
+                            &nbsp&nbsp&nbsp&nbsp
+                            <input type="submit" onclick="location.href='#collab-filter';"/>
+                            <br></br>
+                        </div>
+                        <br></br>
+                        <!-- &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <button type="reset" name="reset" value="reset">Reset</button> -->
+                    </form>
+                    {% if warning2 %}
+                        <div class="col-lg-12 text-center">
+                            <h3 class="section-subheading text-muted">{{ warning2 }}</h3>
+                        </div>
+                    {% endif %}
+                    <br>
+                </div>
+                {% if cf_rec and table_list2 %}
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b>Top-5 favorite beers from people of a similar taste:</b>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th><i>#</i></th>
+                                            <th><i>Beer Name</i></th>
+                                            <th><i>State</i></th>
+                                            <th><i>Avg User Rating (1-20)</i></th>
+                                            <th><i>Avg Overall Rating (1-20)</i></th>
+                                            <th><i>More Details</i></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            {% if cf_rec %}
+                                            <td>{{cf_rec[0]}}</td>
+                                            <td>{{table_list2[0][0]}}</td>
+                                            <td>{{table_list2[0][1]}}</td>
+                                            <td>{{table_list2[0][2]}}</td>
+                                            <td><a href="{{table_list2[0][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            {% if cf_rec %}
+                                            <td>{{cf_rec[1]}}</td>
+                                            <td>{{table_list2[1][0]}}</td>
+                                            <td>{{table_list2[1][1]}}</td>
+                                            <td>{{table_list2[1][2]}}</td>
+                                            <td><a href="{{table_list2[1][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            {% if cf_rec %} 
+                                            <td>{{cf_rec[2]}}</td>
+                                            <td>{{table_list2[2][0]}}</td>
+                                            <td>{{table_list2[2][1]}}</td>
+                                            <td>{{table_list2[2][2]}}</td>
+                                            <td><a href="{{table_list2[2][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            {% if cf_rec %}
+                                            <td>{{cf_rec[3]}}</td>
+                                            <td>{{table_list2[3][0]}}</td>
+                                            <td>{{table_list2[3][1]}}</td>
+                                            <td>{{table_list2[3][2]}}</td>
+                                            <td><a href="{{table_list2[3][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            {% if cf_rec %}
+                                            <td>{{cf_rec[4]}}</td>
+                                            <td>{{table_list2[4][0]}}</td>
+                                            <td>{{table_list2[4][1]}}</td>
+                                            <td>{{table_list2[4][2]}}</td>
+                                            <td><a href="{{table_list2[4][3]}}">link</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Team Beerology</span>
+                </div>
+                <div class="col-md-4">
+                    <!-- <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul> -->
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <!-- <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- HOWTOUSE Modals -->
+
+    <!-- HOWTOUSE Modal 1 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>RECOMMENDER I. SIMILAR TASTE</h2>
+                                <p class="item-intro text-muted">Find beers similar to your favorite.</p>
+                                <img class="img-responsive img-centered" src="static/recom_page/img/portfolio/recommender1.png" alt="">
+                                <p>Recommender I is built upon 280,000 user reviews. The techniques include Natural Language Processing (<a href="https://en.wikipedia.org/wiki/Natural_language_processing">NLP</a>), Term Frequency–Inverse Document Frequency (<a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">TF-IDF</a>), and Latent Semantic Analysis (<a href="https://en.wikipedia.org/wiki/Latent_semantic_analysis">LSA</a>). This is a content-based recommendation system.</p>
+                                <p><strong>Ready to get some beer recommendation? Enter "SIMILAR TASTE" tab, type in the name of your favoriate beer and click "Submit"!</strong></p>
+                                <!-- <ul class="list-inline">
+                                    <li>Date: July 2014</li>
+                                    <li>Client: Round Icons</li>
+                                    <li>Category: Graphic Design</li>
+                                </ul> -->
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Techniques Modal 2 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>RECOMMENDER II. SIMILAR PEOPLE</h2>
+                                <p class="item-intro text-muted">Find beers from other people like you!</p>
+                                <img class="img-responsive img-centered" src="static/recom_page/img/portfolio/recommender2.png" alt="">
+                                <p>Recommender II is built upon ratings from 17,000 users. Two algorithms are used to deal with the sparsity of the user-item matrix. One is Matrix Factorization containing implicit feedback information (<a href="http://www.recsyswiki.com/wiki/SVD%2B%2B">SVD++</a>). Another is Restricted Boltzmann Machine (<a href="https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine">RBM</a>), an unsupervised deep learning technique. Two method are stacked to give the final user-item matrix.
+                                </p>
+                                <p><strong>In the "SIMILAR PEOPLE" tab, enter some beer names and rate them from 1 to 20, and click "Submit"!</strong></p>
+                                <p>Note: <strong>(1)</strong> You can input up to 10 beer-ratings, and the input order does not matter. <strong>(2)</strong> If you input same beer more than once, the latter will be taken into account. <strong>(3)</strong> It is ok to skip lines</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery -->
+    <script src="static/recom_page/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="static/recom_page/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="static/recom_page/js/jqBootstrapValidation.js"></script>
+    <script src="static/recom_page/js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="static/recom_page/js/agency.min.js"></script>
+
+
+</body>
+
+</html>
