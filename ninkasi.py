@@ -23,7 +23,7 @@ def index():
 
 @app.route("/recom", methods=['GET', 'POST'])
 def recom():
-	# content-based model loading
+    # content-based model loading
 	with open("./model/CB/beer_list.json", "rb") as bf:
 		beer_list1 = json.load(bf)
 	with open("./model/CB/index.p", "rb") as idxf:
