@@ -79,16 +79,16 @@ def get_support_files():
     beer_list = map(lambda x: x.decode('utf-8', 'ignore').encode('ascii', 'ignore'), beer_list)
     beer_list = map(lambda x: re.sub('\s+', ' ', x).strip(), beer_list)
     rev_list = pickle.load(open("back_up/review_sc_proc_result/words_sc_proc.pickle", "rb"))
-    print "pickles imported..."
+    print("pickles imported...")
 
     textDict, index, corpus_tfidf = TFIDF_LSI_SIM(rev_list)
-    print "similarity matrix generated"
+    print("similarity matrix generated")
 
     pickle.dump(beer_list, open('beer_list.p', 'wb'))
     pickle.dump(textDict, open('textDict.p', 'wb'))
     pickle.dump(index, open('index.p', 'wb'))
     pickle.dump(corpus_tfidf, open('corpus_tfidf.p', 'wb'))
-    print 'results dumped'
+    print('results dumped')
 
 
 
@@ -96,48 +96,28 @@ if __name__ == "__main__":
 
     if 'beer_list' not in locals():
         beer_list = pickle.load(open("beer_list.p", "rb"))
-        print 'beer_list loaded'
+        print('beer_list loaded')
     if 'textDict' not in locals():
         textDict = pickle.load(open("textDict.p", "rb"))
-        print 'textDict loaded'
+        print('textDict loaded')
     if 'index' not in locals():
         index = pickle.load(open("index.p", "rb"))
-        print 'index loaded'
+        print('index loaded')
     if 'corpus_tfidf' not in locals():
         corpus_tfidf = pickle.load(open("corpus_tfidf.p", "rb"))
-        print 'corpus_tfidf loaded'
-    print '='*100
+        print('corpus_tfidf loaded')
+    print('='*100)
 
     beer_select = 'Side Project Fuzzy'
-    print 'the beer you select is:', beer_select
-    print 'top 50 key words for this beer are:'
+    print('the beer you select is:', beer_select)
+    print('top 50 key words for this beer are:')
     key_words = get_beer_keywords(beer_select,
                                   corpus_tfidf, beer_list, textDict, ntop=50)
-    print map(lambda x: x.decode('utf-8', 'ignore').encode('ascii', 'ignore'), key_words)
-    print '='*100
-    print 'top 10 recommending beers are:'
-    print get_similar_beers(beer_select,
-                            beer_list, index, ntop=10)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    print (map(lambda x: x.decode('utf-8', 'ignore').encode('ascii', 'ignore'), key_words))
+    print ('='*100)
+    print ('top 10 recommending beers are:')
+    print (get_similar_beers(beer_select,
+                            beer_list, index, ntop=10))
 
 
 def test_recommendation():
@@ -164,11 +144,11 @@ def test_recommendation():
     # print review_list
 
     beer_input = "br1"
-    print 'beer index is:', beer_list.index(beer_input)
+    print('beer index is:', beer_list.index(beer_input))
     #print corpus_tfidf[beer_list.index(beer_input)]
-    print "+" * 50
+    print("+" * 50)
 
-    print get_similar_beers(beer_input, beer_list, index)
+    print(get_similar_beers(beer_input, beer_list, index))
 
 
 

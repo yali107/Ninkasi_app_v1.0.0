@@ -11,9 +11,9 @@ app = Flask(__name__)
 
 import socket
 
-conn = socket.create_connection(("d6efcf30.carbon.hostedgraphite.com", 2003))
-conn.send("a9ffb36d-310b-4e39-9c42-d30f000b36da.test.testing 1.2\n")
-conn.close()
+# conn = socket.create_connection(("d6efcf30.carbon.hostedgraphite.com", 2003))
+# conn.send("a9ffb36d-310b-4e39-9c42-d30f000b36da.test.testing 1.2\n")
+# conn.close()
 
 
 @app.route("/")
@@ -106,5 +106,5 @@ def recom():
 
 
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)

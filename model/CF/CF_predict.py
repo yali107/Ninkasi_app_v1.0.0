@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
     # load matrix here
     ratings_mat = np.load('ratings_svdpp.npy')
-    print 'mat loading complete'
+    print('mat loading complete')
     # global_avg = np.mean(ratings_mat)
     # user_bias = np.sum(ratings_mat, axis=1) / ratings_mat.shape[1]
     # ratings_mat = ratings_mat + global_avg
@@ -95,14 +95,14 @@ if __name__ == '__main__':
     # load beer dictionary here
     with open('beer_dict.pickle', 'rb') as f:
         beer_names = pickle.load(f)
-    print 'dict loading complete'
+    print('dict loading complete')
 
     test_users = [('Yazoo Embrace the Funk Series: Deux Rouges', 20), ("Iron Hill Bourbon Porter", 3)]
 
     rating_mat, global_avg = CF_mat_preprocess(ratings_mat)
-    print 'CF_mat_preprocess done'
+    print('CF_mat_preprocess done')
     user_data = CF_user_preprocess(test_users, ratings_mat, beer_names)
-    print 'CF_user_preprocess done'
+    print('CF_user_preprocess done')
     # print sum(user_data)
     #print beer_names
 
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     # for i in list(np.random.randint(0, ratings_mat.shape[1], 10)):
     #     homer[i] = np.random.randint(1, 20, 1)[0]
 
-    print CF_rec(user_data, ratings_mat, global_avg, beer_names)
+    print(CF_rec(user_data, ratings_mat, global_avg, beer_names))
 
 
 
